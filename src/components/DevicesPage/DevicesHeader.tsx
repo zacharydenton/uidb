@@ -1,9 +1,9 @@
 import { useIntl, FormattedMessage } from "react-intl";
 
-import IconLink from "./IconLink";
-import UbiquitiLogo from "./UbiquitiLogo";
+import IconLink from "../IconLink";
+import UbiquitiLogo from "../UbiquitiLogo";
 
-function Header() {
+function DevicesHeader() {
   const intl = useIntl();
 
   return (
@@ -36,4 +36,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default DevicesHeader;

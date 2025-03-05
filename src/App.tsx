@@ -1,11 +1,14 @@
 import { IntlProvider } from "react-intl";
 
-import Header from "./components/Header";
+import DevicesPage from "./components/DevicesPage";
+import UIDBProvider from "./contexts/UIDBProvider";
 
 function App() {
   return (
     <IntlProvider locale="en" defaultLocale="en">
-      <Header />
+      <UIDBProvider>
+        <DevicesPage />
+      </UIDBProvider>
     </IntlProvider>
   );
 }
