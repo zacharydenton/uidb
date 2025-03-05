@@ -1,5 +1,7 @@
 import { createContext } from "react";
 
-const UIDBContext = createContext({});
+import UIDB from "../assets/uidb.json";
+
+const UIDBContext = createContext<typeof UIDB>(UIDB);
 
 export default UIDBContext;

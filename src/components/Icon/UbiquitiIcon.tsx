@@ -1,4 +1,4 @@
-function UbiquitiLogo() {
+function UbiquitiIcon() {
   return (
     <svg
       width="40"
@@ -20,4 +20,4 @@ function UbiquitiLogo() {
   );
 }
 
-export default UbiquitiLogo;
+export default UbiquitiIcon;

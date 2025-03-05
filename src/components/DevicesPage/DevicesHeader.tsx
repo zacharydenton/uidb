@@ -1,7 +1,6 @@
 import { useIntl, FormattedMessage } from "react-intl";
 
 import IconLink from "../IconLink";
-import UbiquitiLogo from "../UbiquitiLogo";
 
 function DevicesHeader() {
   const intl = useIntl();
@@ -9,7 +8,7 @@ function DevicesHeader() {
   return (
     <div className="bg-gray-50 text-gray-500 flex p-1">
       <IconLink
-        icon={<UbiquitiLogo />}
+        icon="ubiquiti"
         title={intl.formatMessage({
           id: "devices.reset_text",
           description: "The alt text for a button that resets the devices list",

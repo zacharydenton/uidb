@@ -1,5 +1,8 @@
+import Icon from "./Icon";
+import type { IconType } from "./Icon";
+
 type Props = {
-  icon: React.ReactNode;
+  icon: IconType;
   title: string;
 };
 
@@ -9,7 +12,7 @@ function IconLink({ icon, title }: Props) {
       className="text-gray-600 hover:text-blue-500 focus:ring ring-blue-500 cursor-pointer"
       title={title}
     >
-      {icon}
+      <Icon icon={icon} />
     </a>
   );
 }
