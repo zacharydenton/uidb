@@ -1,13 +1,25 @@
-import { FormattedMessage } from "react-intl";
+import { useIntl, FormattedMessage } from "react-intl";
+
+import IconLink from "./IconLink";
+import UbiquitiLogo from "./UbiquitiLogo";
 
 function Header() {
+  const intl = useIntl();
+
   return (
-    <div className="bg-gray-50 text-gray-500 flex p-2">
-      <span>logo</span>
-      <div className="px-4 flex flex-1 space-between">
+    <div className="bg-gray-50 text-gray-500 flex p-1">
+      <IconLink
+        icon={<UbiquitiLogo />}
+        title={intl.formatMessage({
+          id: "devices.reset_text",
+          description: "The alt text for a button that resets the devices list",
+          defaultMessage: "Reset device filters",
+        })}
+      />
+      <div className="px-4 flex flex-1 justify-between items-center">
         <h1>
           <FormattedMessage
-            id="app.page_title"
+            id="devices.page_title"
             description="The title of a page displaying Ubiquiti devices"
             defaultMessage="Devices"
           />
