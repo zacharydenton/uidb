@@ -5,6 +5,7 @@ import UIDBContext from "../../api/UIDBContext";
 
 import DevicesFilters from "./DevicesFilters";
 import DevicesHeader from "./DevicesHeader";
+import DevicesGrid from "./DevicesGrid";
 import DevicesTable from "./DevicesTable";
 
 function DevicesPage() {
@@ -15,6 +16,7 @@ function DevicesPage() {
     <>
       <DevicesHeader />
       <DevicesFilters devices={devices} />
+      <DevicesGrid devices={devices} />
       <DevicesTable devices={devices} />
     </>
   );
