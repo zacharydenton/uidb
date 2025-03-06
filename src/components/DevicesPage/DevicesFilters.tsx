@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router";
 import Button from "../Button";
 import IconLink from "../IconLink";
 import SearchInput from "../SearchInput";
+import { replaceSearchParam } from "../../utils/routes";
 import type { Device } from "../../api/devices";
 
 type DevicesCountProps = {
@@ -35,10 +36,8 @@ function ViewToggle({ isGridActive }: ViewToggleProps) {
   const intl = useIntl();
   const [searchParams] = useSearchParams();
 
-  const listUrl = new URLSearchParams(searchParams);
-  listUrl.set("view", "list");
-  const gridUrl = new URLSearchParams(searchParams);
-  gridUrl.set("view", "grid");
+  const listUrl = replaceSearchParam(searchParams, "view", "list");
+  const gridUrl = replaceSearchParam(searchParams, "view", "grid");
 
   return (
     <div className="flex gap-2">

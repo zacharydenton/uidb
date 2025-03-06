@@ -11,6 +11,8 @@ export type Device = {
   sku: string;
   /** An identifier for the device's default image. */
   imageId: string;
+  /** The original JSON for this device in UIDB. */
+  json: object;
 };
 
 export function getDevicesFromUIDB(uidb: UIDBType): Device[] {
@@ -22,6 +24,7 @@ export function getDevicesFromUIDB(uidb: UIDBType): Device[] {
       productLine: uidbDevice.line.name,
       sku: uidbDevice.sku,
       imageId: uidbDevice.images.default,
+      json: uidbDevice,
     });
   }
   return result;

@@ -12,7 +12,7 @@ type Props = {
 
 function IconLink({ icon, to, title, activeFilter }: Props) {
   const className =
-    "p-1 rounded-sm text-gray-600 hover:bg-gray-50 focus:ring focus:outline-none ring-blue-500 cursor-pointer [&.active]:text-blue-500 [&.active]:bg-gray-50";
+    "p-1 rounded-sm text-gray-600 hover:bg-gray-50 hover:text-gray-700 focus:ring focus:outline-none ring-blue-500 cursor-pointer [&.active]:text-blue-500 [&.active]:bg-gray-50";
   return (
     <NavLink
       to={to}

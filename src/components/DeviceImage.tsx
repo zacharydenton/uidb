@@ -11,7 +11,15 @@ function imageUrl(device: Device, width: number) {
 
 function DeviceImage({ device, width }: Props) {
   const src = imageUrl(device, width);
-  return <img width={width} src={src} alt={device.name} loading="lazy" />;
+  return (
+    <img
+      width={width}
+      height={width}
+      src={src}
+      alt={device.name}
+      loading="lazy"
+    />
+  );
 }
 
 export default DeviceImage;

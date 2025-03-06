@@ -1,3 +1,6 @@
+import { NavLink, useSearchParams } from "react-router";
+
+import { replaceSearchParam } from "../../utils/routes";
 import type { Device } from "../../api/devices";
 import DeviceImage from "../DeviceImage";
 
@@ -6,9 +9,12 @@ type DeviceCardProps = {
 };
 
 function DeviceCard({ device }: DeviceCardProps) {
+  const [searchParams] = useSearchParams();
+  const deviceUrl = replaceSearchParam(searchParams, "device", device.id);
+
   return (
-    <a
-      href="#"
+    <NavLink
+      to={`?${deviceUrl}`}
       className="relative group flex flex-col rounded-lg border border-gray-200 text-gray-600 hover:text-blue-500 focus:ring ring-blue-500 focus:outline-none cursor-pointer overflow-hidden"
     >
       <div className="absolute px-2 py-1 text-xs font-bold top-2 right-2 rounded-sm bg-white/95 text-blue-500">
@@ -21,7 +27,7 @@ function DeviceCard({ device }: DeviceCardProps) {
         <h3 className="text-gray-700 mb-2">{device.name}</h3>
         <h4 className="text-gray-500 text-sm">{device.sku}</h4>
       </div>
-    </a>
+    </NavLink>
   );
 }
 
