@@ -1,7 +1,7 @@
 import { IntlProvider } from "react-intl";
 
 import DevicesPage from "./components/DevicesPage";
-import UIDBProvider from "./contexts/UIDBProvider";
+import UIDBProvider from "./api/UIDBProvider";
 
 function App() {
   return (

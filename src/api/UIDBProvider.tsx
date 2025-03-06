@@ -1,5 +1,5 @@
 import UIDBContext from "./UIDBContext";
-import UIDB from "../assets/uidb.json";
+import { UIDB } from "./UIDB";
 
 type Props = {
   children: React.ReactNode;

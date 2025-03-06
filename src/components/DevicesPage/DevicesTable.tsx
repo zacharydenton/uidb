@@ -1,8 +1,7 @@
-import { useContext } from "react";
 import { FormattedMessage } from "react-intl";
 
+import type { Device } from "../../api/devices";
 import DeviceImage from "../DeviceImage";
-import UIDBContext from "../../contexts/UIDBContext";
 
 function TableHeader() {
   return (
@@ -13,7 +12,7 @@ function TableHeader() {
           <FormattedMessage
             id="devices.product_line"
             description="The title of the devices 'product line' field"
-            defaultMessage="Product line"
+            defaultMessage="Product Line"
           />
         </th>
         <th className="p-2">
@@ -23,41 +22,59 @@ function TableHeader() {
             defaultMessage="Name"
           />
         </th>
+        <th className="p-2">
+          <FormattedMessage
+            id="devices.sku"
+            description="The title of the devices 'SKU' field"
+            defaultMessage="SKU"
+          />
+        </th>
       </tr>
     </thead>
   );
 }
 
-function TableRow({ device }) {
+type TableRowProps = {
+  device: Device;
+};
+
+function TableRow({ device }: TableRowProps) {
   return (
     <tr className="border-b border-gray-200">
       <td className="w-[32px]">
         <DeviceImage device={device} width={32} />
       </td>
-      <td className="p-2">{device.line.name}</td>
-      <td className="p-2">{device.product.name}</td>
+      <td className="p-2">{device.productLine}</td>
+      <td className="p-2">{device.name}</td>
+      <td className="p-2">{device.sku}</td>
     </tr>
   );
 }
 
-function TableBody() {
-  const uidb = useContext(UIDBContext);
+type TableBodyProps = {
+  devices: Device[];
+};
 
+function TableBody({ devices }: TableBodyProps) {
   return (
     <tbody>
-      {uidb.devices.map((device) => (
+      {devices.map((device: Device) => (
         <TableRow key={device.id} device={device} />
       ))}
     </tbody>
   );
 }
 
-function DevicesTable() {
+type Props = {
+  devices: Device[];
+};
+
+function DevicesTable({ devices }: Props) {
   return (
     <div className="px-4">
       <table className="w-full text-left">
         <TableHeader />
-        <TableBody />
+        <TableBody devices={devices} />
       </table>
     </div>
   );

@@ -1,14 +1,15 @@
-import { useContext } from "react";
 import { useIntl, FormattedMessage } from "react-intl";
 
 import Button from "../Button";
 import IconLink from "../IconLink";
 import SearchInput from "../SearchInput";
-import UIDBContext from "../../contexts/UIDBContext";
+import type { Device } from "../../api/devices";
 
-function DevicesCount() {
-  const uidb = useContext(UIDBContext);
+type Props = {
+  devices: Device[];
+};
 
+function DevicesCount({ devices }: Props) {
   return (
     <span className="text-gray-500">
       <FormattedMessage
@@ -19,7 +20,7 @@ function DevicesCount() {
   one {{count, number} Device}
   other {{count, number} Devices}
 }"
-        values={{ count: uidb.devices.length }}
+        values={{ count: devices.length }}
       />
     </span>
   );
@@ -64,12 +65,12 @@ function FilterDropdown() {
   );
 }
 
-function DevicesFilters() {
+function DevicesFilters({ devices }: Props) {
   return (
     <div className="p-4 flex justify-between">
       <div className="flex gap-4 items-center">
         <SearchInput />
-        <DevicesCount />
+        <DevicesCount devices={devices} />
       </div>
       <div className="flex gap-4 items-center">
         <ViewToggle />
