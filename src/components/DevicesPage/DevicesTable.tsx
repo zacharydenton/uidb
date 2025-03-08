@@ -1,7 +1,7 @@
 import { FormattedMessage } from "react-intl";
 
-import type { Device } from "../../api/devices";
-import DeviceImage from "../DeviceImage";
+import type { Device } from "./types";
+import DeviceImage from "./DeviceImage";
 
 function TableHeader() {
   return (

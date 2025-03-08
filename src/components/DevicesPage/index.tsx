@@ -1,33 +1,48 @@
-import { useContext } from "react";
+import * as React from "react";
 import { useSearchParams } from "react-router";
-
-import { getDevicesFromUIDB } from "../../api/devices";
-import UIDBContext from "../../api/UIDBContext";
 
 import DevicesHeader from "./DevicesHeader";
 import DevicesList from "./DevicesList";
 import DeviceDetail from "./DeviceDetail";
+import DeviceDB from "./DeviceDB";
 
-function DevicesPage() {
-  const uidb = useContext(UIDBContext);
-  const devices = getDevicesFromUIDB(uidb);
-  const [searchParams] = useSearchParams();
+type Props = {
+  searchParams: URLSearchParams;
+};
 
-  const selectedDeviceId = searchParams.get("device");
-  const selectedDevice = devices.find(
-    (device) => device.id === selectedDeviceId,
-  );
+type State = {
+  deviceDb: DeviceDB;
+};
 
-  return (
-    <>
-      <DevicesHeader />
-      {selectedDevice ? (
-        <DeviceDetail devices={devices} device={selectedDevice} />
-      ) : (
-        <DevicesList devices={devices} />
-      )}
-    </>
-  );
+class DevicesPage extends React.Component<Props, State> {
+  state = {
+    deviceDb: new DeviceDB(),
+  };
+
+  render() {
+    const { searchParams } = this.props;
+    const devices = this.state.deviceDb.devices;
+    const selectedDeviceId = searchParams.get("device");
+    const selectedDevice = devices.find(
+      (device) => device.id === selectedDeviceId,
+    );
+
+    return (
+      <>
+        <DevicesHeader />
+        {selectedDevice ? (
+          <DeviceDetail devices={devices} device={selectedDevice} />
+        ) : (
+          <DevicesList devices={devices} />
+        )}
+      </>
+    );
+  }
 }
 
-export default DevicesPage;
+const WrappedDevicesPage = () => {
+  const [searchParams] = useSearchParams();
+  return <DevicesPage searchParams={searchParams} />;
+};
+
+export default WrappedDevicesPage;

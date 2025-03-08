@@ -1,9 +1,9 @@
 import { FormattedMessage } from "react-intl";
 import { NavLink, useSearchParams } from "react-router";
 
-import DeviceImage from "../DeviceImage";
+import DeviceImage from "./DeviceImage";
 import { replaceSearchParam, removeSearchParam } from "../../utils/routes";
-import type { Device } from "../../api/devices";
+import type { Device } from "./types";
 
 type Props = {
   devices: Device[];
@@ -32,7 +32,7 @@ function DeviceDetail({ devices, device }: Props) {
           <NavLink to={`?${nextUrl}`}>Next</NavLink>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row gap-4 p-4 justify-center">
+      <div className="flex flex-col sm:flex-row gap-8 p-4 justify-center">
         <div className="flex justify-center bg-gray-50 rounded-lg self-start w-full sm:w-lg">
           <DeviceImage device={device} width={512} />
         </div>

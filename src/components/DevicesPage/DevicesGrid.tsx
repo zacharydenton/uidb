@@ -1,8 +1,8 @@
 import { NavLink, useSearchParams } from "react-router";
 
 import { replaceSearchParam } from "../../utils/routes";
-import type { Device } from "../../api/devices";
-import DeviceImage from "../DeviceImage";
+import type { Device } from "./types";
+import DeviceImage from "./DeviceImage";
 
 type DeviceCardProps = {
   device: Device;

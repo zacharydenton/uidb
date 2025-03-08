@@ -5,7 +5,7 @@ import Button from "../Button";
 import IconLink from "../IconLink";
 import SearchInput from "../SearchInput";
 import { replaceSearchParam } from "../../utils/routes";
-import type { Device } from "../../api/devices";
+import type { Device } from "./types";
 
 type DevicesCountProps = {
   devices: Device[];

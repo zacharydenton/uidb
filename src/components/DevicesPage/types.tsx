@@ -1,5 +1,3 @@
-import type { UIDBType } from "./UIDB";
-
 export type Device = {
   /** The device's UIDB identifier (a UUID). */
   id: string;
@@ -14,18 +12,3 @@ export type Device = {
   /** The original JSON for this device in UIDB. */
   json: object;
 };
-
-export function getDevicesFromUIDB(uidb: UIDBType): Device[] {
-  const result = [];
-  for (const uidbDevice of uidb.devices ?? []) {
-    result.push({
-      id: uidbDevice.id,
-      name: uidbDevice.product.name,
-      productLine: uidbDevice.line.name,
-      sku: uidbDevice.sku,
-      imageId: uidbDevice.images.default,
-      json: uidbDevice,
-    });
-  }
-  return result;
-}

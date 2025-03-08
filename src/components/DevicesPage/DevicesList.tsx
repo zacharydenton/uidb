@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router";
 import DevicesFilters from "./DevicesFilters";
 import DevicesGrid from "./DevicesGrid";
 import DevicesTable from "./DevicesTable";
-import type { Device } from "../../api/devices";
+import type { Device } from "./types";
 
 type Props = {
   devices: Device[];
