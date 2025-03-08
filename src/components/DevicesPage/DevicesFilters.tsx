@@ -86,6 +86,8 @@ type Props = {
 };
 
 function DevicesFilters({ devices, isGridActive, onSearchChange }: Props) {
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search");
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.currentTarget.value;
     onSearchChange(query);
@@ -94,7 +96,7 @@ function DevicesFilters({ devices, isGridActive, onSearchChange }: Props) {
   return (
     <div className="p-4 flex justify-between">
       <div className="flex gap-4 items-center">
-        <SearchInput onChange={handleSearchChange} />
+        <SearchInput defaultValue={searchQuery} onChange={handleSearchChange} />
         <DevicesCount devices={devices} />
       </div>
       <div className="flex gap-4 items-center">
