@@ -82,13 +82,19 @@ function FilterDropdown() {
 type Props = {
   devices: Device[];
   isGridActive: boolean;
+  onSearchChange: (query: string) => void;
 };
 
-function DevicesFilters({ devices, isGridActive }: Props) {
+function DevicesFilters({ devices, isGridActive, onSearchChange }: Props) {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.currentTarget.value;
+    onSearchChange(query);
+  };
+
   return (
     <div className="p-4 flex justify-between">
       <div className="flex gap-4 items-center">
-        <SearchInput />
+        <SearchInput onChange={handleSearchChange} />
         <DevicesCount devices={devices} />
       </div>
       <div className="flex gap-4 items-center">
