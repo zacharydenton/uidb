@@ -22,6 +22,10 @@ export default class DeviceDB {
     }
     this.index = new MiniSearch({
       fields: ["name", "productLine", "sku"],
+      searchOptions: {
+        prefix: true,
+        combineWith: "AND",
+      },
     });
     this.index.addAll(this.devices);
   }
@@ -31,6 +35,7 @@ export default class DeviceDB {
   }
 
   findAll(deviceIds: Device["id"][]): Device[] {
-    return this.devices.filter((device) => deviceIds.includes(device.id));
+    const idSet = new Set(deviceIds);
+    return this.devices.filter((device) => idSet.has(device.id));
   }
 }
