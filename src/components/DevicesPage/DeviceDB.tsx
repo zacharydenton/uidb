@@ -14,6 +14,7 @@ export default class DeviceDB {
       this.devices.push({
         id: uidbDevice.id,
         name: uidbDevice.product.name,
+        shortnames: uidbDevice.shortnames,
         productLine: uidbDevice.line.name,
         sku: uidbDevice.sku,
         imageId: uidbDevice.images.default,
@@ -21,7 +22,14 @@ export default class DeviceDB {
       });
     }
     this.index = new MiniSearch({
-      fields: ["name", "productLine", "sku"],
+      fields: ["name", "productLine", "sku", "shortnames"],
+      extractField: (doc, fieldName) => {
+        if (fieldName === "shortnames") {
+          return doc.shortnames.join(" ");
+        } else {
+          return doc[fieldName];
+        }
+      },
       searchOptions: {
         prefix: true,
         combineWith: "AND",

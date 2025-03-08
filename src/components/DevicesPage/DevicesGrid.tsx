@@ -25,7 +25,9 @@ function DeviceCard({ device }: DeviceCardProps) {
       </div>
       <div className="flex-1 bg-white group-hover:bg-gray-50 p-4">
         <h3 className="text-gray-700 mb-2">{device.name}</h3>
-        <h4 className="text-gray-500 text-sm">{device.sku}</h4>
+        <h4 className="text-gray-500 text-sm">
+          {device.shortnames.join(", ")}
+        </h4>
       </div>
     </NavLink>
   );

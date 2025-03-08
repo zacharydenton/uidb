@@ -73,6 +73,16 @@ function DeviceDetail({ devices, device }: Props) {
             <div className="flex py-1 gap-4 justify-between">
               <dt>
                 <FormattedMessage
+                  id="devices.shortnames"
+                  description="The title of the devices 'short names' field"
+                  defaultMessage="Short Names"
+                />
+              </dt>
+              <dd className="text-gray-500">{device.shortnames.join(", ")}</dd>
+            </div>
+            <div className="flex py-1 gap-4 justify-between">
+              <dt>
+                <FormattedMessage
                   id="devices.sku"
                   description="The title of the devices 'SKU' field"
                   defaultMessage="SKU"
