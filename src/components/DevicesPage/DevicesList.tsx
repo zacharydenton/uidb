@@ -8,9 +8,16 @@ import type { Device } from "./types";
 type Props = {
   devices: Device[];
   onSearchChange: (query: string) => void;
+  productLines: string[];
+  onProductLineChange: (productLine: string, checked: boolean) => void;
 };
 
-function DevicesList({ devices, onSearchChange }: Props) {
+function DevicesList({
+  devices,
+  onSearchChange,
+  productLines,
+  onProductLineChange,
+}: Props) {
   const [searchParams] = useSearchParams();
   const isGridActive = searchParams.get("view") === "grid";
   const SubView = isGridActive ? DevicesGrid : DevicesTable;
@@ -21,6 +28,8 @@ function DevicesList({ devices, onSearchChange }: Props) {
         devices={devices}
         isGridActive={isGridActive}
         onSearchChange={onSearchChange}
+        productLines={productLines}
+        onProductLineChange={onProductLineChange}
       />
       <SubView devices={devices} />
     </>

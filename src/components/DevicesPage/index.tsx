@@ -28,6 +28,28 @@ class DevicesPage extends React.Component<Props, State> {
     navigate(`?${newParams}`);
   };
 
+  handleProductLineChange = (productLine: string, checked: boolean) => {
+    const { navigate, searchParams } = this.props;
+    const newParams = new URLSearchParams(searchParams);
+
+    const lineSet = new Set(newParams.getAll("line"));
+
+    if (checked) {
+      lineSet.add(productLine);
+    } else {
+      lineSet.delete(productLine);
+    }
+
+    const lines = [...lineSet];
+    lines.sort();
+    newParams.delete("line");
+    for (const line of lines) {
+      newParams.append("line", line);
+    }
+
+    navigate(`?${newParams}`);
+  };
+
   render() {
     const { searchParams } = this.props;
     const { deviceDb } = this.state;
@@ -43,6 +65,18 @@ class DevicesPage extends React.Component<Props, State> {
       devices = deviceDb.findAll(hits.map((hit) => hit.id));
     }
 
+    const productLines = [
+      ...new Set(deviceDb.devices.map((device) => device.productLine)),
+    ];
+    productLines.sort();
+
+    const selectedLines = searchParams.getAll("line");
+    if (selectedLines.length > 0) {
+      devices = devices.filter((device) =>
+        selectedLines.includes(device.productLine),
+      );
+    }
+
     return (
       <>
         <DevicesHeader />
@@ -52,6 +86,8 @@ class DevicesPage extends React.Component<Props, State> {
           <DevicesList
             devices={devices}
             onSearchChange={this.handleSearchChange}
+            productLines={productLines}
+            onProductLineChange={this.handleProductLineChange}
           />
         )}
       </>
