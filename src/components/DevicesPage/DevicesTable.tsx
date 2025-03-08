@@ -1,5 +1,7 @@
+import { Link, useSearchParams } from "react-router";
 import { FormattedMessage } from "react-intl";
 
+import { replaceSearchParam } from "../../utils/routes";
 import type { Device } from "./types";
 import DeviceImage from "./DeviceImage";
 
@@ -10,16 +12,16 @@ function TableHeader() {
         <th></th>
         <th className="p-2">
           <FormattedMessage
-            id="devices.product_line"
-            description="The title of the devices 'product line' field"
-            defaultMessage="Product Line"
+            id="devices.name"
+            description="The title of the devices 'name' field"
+            defaultMessage="Name"
           />
         </th>
         <th className="p-2">
           <FormattedMessage
-            id="devices.name"
-            description="The title of the devices 'name' field"
-            defaultMessage="Name"
+            id="devices.product_line"
+            description="The title of the devices 'product line' field"
+            defaultMessage="Product Line"
           />
         </th>
         <th className="p-2">
@@ -39,14 +41,21 @@ type TableRowProps = {
 };
 
 function TableRow({ device }: TableRowProps) {
+  const [searchParams] = useSearchParams();
+  const deviceUrl = replaceSearchParam(searchParams, "device", device.id);
+
   return (
     <tr className="border-b border-gray-200">
       <td className="w-[32px]">
         <DeviceImage device={device} width={32} />
       </td>
-      <td className="p-2">{device.productLine}</td>
-      <td className="p-2">{device.name}</td>
-      <td className="p-2">{device.sku}</td>
+      <td className="p-2">
+        <Link className="hover:underline" to={`?${deviceUrl}`}>
+          {device.name}
+        </Link>
+      </td>
+      <td className="p-2 text-gray-500">{device.productLine}</td>
+      <td className="p-2 text-gray-500">{device.sku}</td>
     </tr>
   );
 }

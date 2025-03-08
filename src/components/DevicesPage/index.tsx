@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useNavigate, useSearchParams } from "react-router";
 
-import { replaceSearchParam } from "../../utils/routes";
+import { removeSearchParam, replaceSearchParam } from "../../utils/routes";
 
 import DevicesHeader from "./DevicesHeader";
 import DevicesList from "./DevicesList";
@@ -24,7 +24,10 @@ class DevicesPage extends React.Component<Props, State> {
 
   handleSearchChange = (query: string) => {
     const { navigate, searchParams } = this.props;
-    const newParams = replaceSearchParam(searchParams, "search", query);
+    const newParams =
+      query.length > 0
+        ? replaceSearchParam(searchParams, "search", query)
+        : removeSearchParam(searchParams, "search");
     navigate(`?${newParams}`);
   };
 
