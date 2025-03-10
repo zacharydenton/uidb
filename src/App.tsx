@@ -6,7 +6,7 @@ import DevicesPage from "./components/DevicesPage";
 function App() {
   return (
     <IntlProvider locale="en" defaultLocale="en">
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.VITE_BASE_PATH}>
         <Routes>
           <Route path="/" element={<DevicesPage />} />
         </Routes>

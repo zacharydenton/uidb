@@ -25,6 +25,12 @@ Create a production build with:
 $ npm run build
 ```
 
+If you are deploying to a subdirectory, specify `VITE_BASE_PATH`:
+
+```console
+$ VITE_BASE_PATH=/uidb/ npm run build
+```
+
 Deploy the contents of `dist` to any static file host.
 
 ## Updating UIDB version
