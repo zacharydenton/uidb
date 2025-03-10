@@ -1,54 +1,40 @@
-# React + TypeScript + Vite
+# UIDB
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a user interface for the [Ubiquiti
+UIDB](https://static.ui.com/fingerprint/ui/public.json).
 
-Currently, two official plugins are available:
+## Dev Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Install dependencies with:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```console
+$ npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Start a dev server with:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```console
+$ npm run dev
 ```
+
+## Deploy
+
+Create a production build with:
+
+```console
+$ npm run build
+```
+
+Deploy the contents of `dist` to any static file host.
+
+## Updating UIDB version
+
+The UIDB schema is subject to change and no guarantees are made regarding
+backward compatibility. Therefore, the UIDB is bundled as part of the app. This
+allows static analysis to catch any breaking changes before they appear to the
+user.
+
+To update to the latest version of UIDB, replace `src/assets/uidb.json` with
+the latest version, and fix any typecheck or test failures. (In a production
+setting, this step would run as a nightly automated task (e.g. with GitHub
+Actions), notifying the relevant team if errors occur.)

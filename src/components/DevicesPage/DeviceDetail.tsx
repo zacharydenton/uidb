@@ -39,7 +39,7 @@ function DeviceDetail({ devices, device }: Props) {
           </ButtonLink>
         </div>
         <div className="flex gap-2">
-          <ButtonLink to={`?${prevUrl}`}>
+          <ButtonLink to={`?${prevUrl}`} rel="prev">
             <Icon icon="arrow_left" />
             <span className="sr-only">
               <FormattedMessage
@@ -49,7 +49,7 @@ function DeviceDetail({ devices, device }: Props) {
               />
             </span>
           </ButtonLink>
-          <ButtonLink to={`?${nextUrl}`}>
+          <ButtonLink to={`?${nextUrl}`} rel="next">
             <Icon icon="arrow_right" />
             <span className="sr-only">
               <FormattedMessage
