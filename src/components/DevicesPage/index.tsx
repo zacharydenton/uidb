@@ -18,7 +18,7 @@ type State = {
 };
 
 class DevicesPage extends React.Component<Props, State> {
-  state = {
+  state: State = {
     deviceDb: new DeviceDB(),
   };
 

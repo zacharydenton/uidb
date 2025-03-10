@@ -1,6 +1,8 @@
 import { FormattedMessage } from "react-intl";
-import { NavLink, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
 
+import ButtonLink from "../ButtonLink";
+import Icon from "../Icon";
 import DeviceImage from "./DeviceImage";
 import { replaceSearchParam, removeSearchParam } from "../../utils/routes";
 import type { Device } from "./types";
@@ -23,13 +25,40 @@ function DeviceDetail({ devices, device }: Props) {
 
   return (
     <>
-      <div className="p-4 flex justify-between">
+      <div className="p-4 pb-0 flex justify-between">
         <div>
-          <NavLink to={`?${backUrl}`}>Back</NavLink>
+          <ButtonLink to={`?${backUrl}`}>
+            <Icon icon="arrow_left" />
+            <div className="ps-1 pe-2">
+              <FormattedMessage
+                id="app.back"
+                description="Text for a link that goes back to the previous screen"
+                defaultMessage="Back"
+              />
+            </div>
+          </ButtonLink>
         </div>
-        <div className="flex gap-4">
-          <NavLink to={`?${prevUrl}`}>Prev</NavLink>
-          <NavLink to={`?${nextUrl}`}>Next</NavLink>
+        <div className="flex gap-2">
+          <ButtonLink to={`?${prevUrl}`}>
+            <Icon icon="arrow_left" />
+            <span className="sr-only">
+              <FormattedMessage
+                id="app.previous"
+                description="Text for a link that goes to the previous item in a list"
+                defaultMessage="Previous"
+              />
+            </span>
+          </ButtonLink>
+          <ButtonLink to={`?${nextUrl}`}>
+            <Icon icon="arrow_right" />
+            <span className="sr-only">
+              <FormattedMessage
+                id="app.next"
+                description="Text for a link that goes to the next item in a list"
+                defaultMessage="Next"
+              />
+            </span>
+          </ButtonLink>
         </div>
       </div>
       <div className="flex flex-col sm:flex-row gap-8 p-4 justify-center">

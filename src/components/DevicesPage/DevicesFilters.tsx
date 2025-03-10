@@ -85,7 +85,7 @@ function FilterDropdown({
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const dropdown = document.getElementById("filter-dropdown")!;
     const buttonRect = e.currentTarget.getBoundingClientRect();
-    dropdown.style.insetBlockStart = `${scrollY + buttonRect.bottom + 8}px`;
+    dropdown.style.insetBlockStart = `${scrollY + buttonRect.bottom}px`;
     dropdown.style.insetInlineStart = `${buttonRect.left}px`;
   };
 
@@ -115,6 +115,7 @@ function FilterDropdown({
             <label key={productLine} className="flex gap-2 cursor-pointer">
               <input
                 type="checkbox"
+                name="line"
                 value={productLine}
                 onChange={handleProductLineChange}
                 checked={selectedLines.includes(productLine)}
@@ -158,12 +159,16 @@ function DevicesFilters({
   };
 
   return (
-    <div className="p-4 flex justify-between">
-      <div className="flex gap-4 items-center">
-        <SearchInput defaultValue={searchQuery} onChange={handleSearchChange} />
+    <div className="p-4 flex gap-4 flex-col sm:flex-row justify-between">
+      <div className="flex gap-4 items-center justify-between">
+        <SearchInput
+          name="search"
+          defaultValue={searchQuery}
+          onChange={handleSearchChange}
+        />
         <DevicesCount devices={devices} />
       </div>
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-4 items-center justify-between">
         <ViewToggle isGridActive={isGridActive} />
         <FilterDropdown
           productLines={productLines}

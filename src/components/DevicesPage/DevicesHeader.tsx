@@ -6,7 +6,7 @@ function DevicesHeader() {
   const intl = useIntl();
 
   return (
-    <div className="bg-gray-100 text-gray-500 flex p-1">
+    <div className="bg-gray-100 text-gray-600 flex p-1">
       <IconLink
         to="/"
         icon="ubiquiti"
